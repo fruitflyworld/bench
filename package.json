@@ -1,0 +1,23 @@
+{
+  "name": "@fruitflyworld/bench",
+  "version": "0.2.0",
+  "description": "The fruitflyworld exam harness: run the same (seed, brain, generations) twice at a fixed 60 Hz and prove the world is a fair grader. Zero dependencies.",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fruitflyworld/bench.git"
+  },
+  "keywords": [
+    "benchmark",
+    "llm-evaluation",
+    "deterministic",
+    "brier-score",
+    "calibration",
+    "game-ai"
+  ],
+  "license": "MIT",
+  "homepage": "https://fruitfly.world/play?bench=1"
+}

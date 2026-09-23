@@ -1,0 +1,32 @@
+{
+  "comment": "Production-verified golden runs of the exam protocol. Every row was executed on fruitfly.world (the deployed game vendors this harness); anyone can re-run the link and must get the same verdict. Eggs and decision counts are per the linked (seed, brain, gens) exam. One seed is one row, not a theorem.",
+  "protocol": "double-run at fixed 60 Hz; identical = every decision-log contentHash and every generation outcome matched",
+  "runs": [
+    {
+      "seed": 42,
+      "brain": "judgment",
+      "gens": 2,
+      "identical": true,
+      "eggsTotal": 5,
+      "verified": "2026-09-21",
+      "source": "https://fruitfly.world/play?bench=1&seed=42&brain=judgment&gens=2"
+    },
+    {
+      "seed": 42,
+      "brain": "circuit",
+      "gens": 2,
+      "identical": true,
+      "eggsTotal": 2,
+      "verified": "2026-09-21",
+      "source": "https://fruitfly.world/play?bench=1&seed=42&brain=circuit&gens=2"
+    },
+    {
+      "seed": "beacon (Sepolia latest block, changes every run)",
+      "brain": "judgment",
+      "gens": 2,
+      "identical": true,
+      "verified": "2026-09-23",
+      "source": "https://fruitfly.world/play?bench=1&seed=beacon&brain=judgment&gens=2"
+    }
+  ]
+}
