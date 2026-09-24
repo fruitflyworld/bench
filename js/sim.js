@@ -23,6 +23,7 @@ export const PRED_BASE = 0.235, PRED_LUNGE = 0.42, PRED_LUNGE_RANGE = 0.22, PRED
 // keeps the original export surface and owns only the environment geometry.
 // Synapse counts LC4=2442 / LPLC2=1366 are research references (Ache et al. 2019,
 // FAFB; MaleCNS DNp01), not biophysical membrane parameters.
+import { dcos, dsin, datan } from "./dmath.js";
 import { GF_PARAMS, makeGFState, stepGF, fireGF } from "./gf-neuron.js";
 export { GF_PARAMS, gfChannels, gfPotential, makeGFState, stepGF, fireGF } from "./gf-neuron.js";
 export const GF = { ...GF_PARAMS, PRED_ANG_R: 0.11 };
@@ -81,7 +82,7 @@ let _rngState = 1337 >>> 0;
 export function rng(){ _rngState|=0; _rngState=(_rngState+0x6D2B79F5)|0; let t=Math.imul(_rngState^(_rngState>>>15),1|_rngState); t=(t+Math.imul(t^(t>>>7),61|t))^t; return ((t^(t>>>14))>>>0)/4294967296; }
 export function seedRng(s){ _rngState=(s>>>0)||1; }
 export function randRange(a,b){ return a+rng()*(b-a); }
-export function randomInDish(maxR=0.85){ const a=rng()*Math.PI*2, r=Math.sqrt(rng())*maxR; return {x:Math.cos(a)*r, y:Math.sin(a)*r}; }
+export function randomInDish(maxR=0.85){ const a=rng()*Math.PI*2, r=Math.sqrt(rng())*maxR; return {x:dcos(a)*r, y:dsin(a)*r}; }
 
 // ---------- GF circuit (pure) ----------
 // gfChannels / gfPotential are re-exported from ./gf-neuron.js above.
@@ -159,7 +160,7 @@ export function simEscapeTrial(mode, seed){
   const gf=makeGFState();
   for(let t=0;t<8;t+=dt){
     v+=acc*dt; d-=v*dt; if(d<0.02) d=0.02;
-    const theta=2*Math.atan(GF.PRED_ANG_R/d);
+    const theta=2*datan(GF.PRED_ANG_R/d);
     const vel=Math.max(0,(theta-prevTheta)/dt); prevTheta=theta;
     const size=(d>PRED_VISUAL)?0:theta, velv=(d>PRED_VISUAL)?0:vel;
     stepGF(gf, dt, { size, vel:velv, mode, leakRate:GF_PARAMS.LEAK_RATE_ASSAY });
@@ -197,6 +198,18 @@ export function makeRng(seed){
 export function draftSeed(worldSeed, gen, eggs, rivalEggs){
   // mix the run's outcome into the draft: your cards depend on how you got here
   return (worldSeed ^ Math.imul(gen,2654435761) ^ Math.imul(eggs,97) ^ Math.imul(rivalEggs,31))>>>0;
+}
+// The wild-type rival's gene weights, as a pure function of the world seed.
+// Same draw order and ranges as GameScene.create() originally rolled from the
+// shared stream (food .4-.9, threat .4-.9, light 0-.5, novelty .1-.6, forage
+// .3-.8), on a private stream: for a given seed the values are bit-identical
+// to what the old create()-time roll produced on a fresh profile. Determinism
+// fix (dish/2): the browser used to roll rival genes ONCE from the page-load
+// world seed and never re-roll them on seed changes (autopilot, bench,
+// setSeed), so the "same" run depended on the visitor's localStorage.
+export function rollRivalGenes(seed){
+  const r=makeRng(seed);
+  return { food:.4+r()*.5, threat:.4+r()*.5, light:r()*.5, novelty:.1+r()*.5, forage:.3+r()*.5 };
 }
 export function draftCards(worldSeed, gen, eggs, rivalEggs, owned){
   const r=makeRng(draftSeed(worldSeed,gen,eggs,rivalEggs));

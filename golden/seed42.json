@@ -7,8 +7,8 @@
       "brain": "judgment",
       "gens": 2,
       "identical": true,
-      "eggsTotal": 5,
-      "verified": "2026-09-21",
+      "eggsTotal": 19,
+      "verified": "2026-09-24",
       "source": "https://fruitfly.world/play?bench=1&seed=42&brain=judgment&gens=2"
     },
     {
@@ -16,8 +16,8 @@
       "brain": "circuit",
       "gens": 2,
       "identical": true,
-      "eggsTotal": 2,
-      "verified": "2026-09-21",
+      "eggsTotal": 4,
+      "verified": "2026-09-24",
       "source": "https://fruitfly.world/play?bench=1&seed=42&brain=circuit&gens=2"
     },
     {
