@@ -20,8 +20,10 @@ A model answer you cannot replay is an opinion. This harness turns the fruit-fly
 world into a closed-loop exam:
 
 1. **Fix the paper.** One editable seed derives everything — food placement, predator
-   behavior, mutation drafts. Nobody, including us, cherry-picked it: `?seed=beacon`
-   derives the seed from the latest Sepolia block hash, and the report links the block.
+   behavior, mutation drafts. `?seed=beacon` derives the seed from the latest Sepolia block
+   hash and the report links the block: a fresh block every ~12 s, so single beacon runs
+   are samples, not picks (the seed is refresh-grindable; commit-before-draw is on the
+   roadmap).
 2. **Starve the model twice.** The render loop pauses; the world steps at a fixed 60 Hz
    through the full `(seed, brain, generations)` exam, then does it again from scratch.
 3. **Compare every seal.** Every brain decision is hashed (`contentHash`, FNV-1a). If every
