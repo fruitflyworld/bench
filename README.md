@@ -2,6 +2,7 @@
   <h1>fruitflyworld / bench</h1>
   <p><strong>Don't exam the model. <em>Starve it.</em></strong></p>
   <p>The exam harness of <a href="https://fruitfly.world">fruitfly.world</a>: same seed, same brain, run twice —<br/>a world is only a fair grader if the two runs are bit-identical.</p>
+  <p><img src="media/identical-report.png" alt="An exam report printing IDENTICAL — every decision hash matched across the double run" width="560"></p>
   <p>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-baff35" alt="MIT"></a>
     <a href="../../actions/workflows/ci.yml"><img src="https://github.com/fruitflyworld/bench/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
