@@ -1,6 +1,6 @@
 <div align="center">
   <h1>fruitflyworld / bench</h1>
-  <p><strong>Don't exam the model. <em>Starve it.</em></strong></p>
+  <p><strong>Don't test the model. <em>Starve it.</em></strong></p>
   <p>The exam harness of <a href="https://fruitfly.world">fruitfly.world</a>: same seed, same brain, run twice —<br/>a world is only a fair grader if the two runs are bit-identical.</p>
   <p><img src="media/identical-report.png" alt="An exam report printing IDENTICAL — every decision hash matched across the double run" width="560"></p>
   <p>
@@ -9,6 +9,8 @@
     <img src="https://img.shields.io/badge/dependencies-0-10b981" alt="zero dependencies">
   </p>
 </div>
+
+> Part of [Fruit Fly World](https://github.com/fruitflyworld) — the trading fly at fruitfly.world runs on this core.
 
 ---
 
